@@ -28,3 +28,25 @@
 	border-radius: 10px;
 	padding: 10px;
 }
+
+#activity_slider .carousel-caption{
+	background: none;
+}
+
+#activity_slider .carousel-control{
+	background: none;
+	border: none;
+	height: 100%;
+}
+
+#activity_slider h2{
+	font-size: 30px;
+	margin: 25px 0px;
+	color: #FFF;
+	background-color: rgba(164, 164, 164, 0.71);
+	border-radius: 10px;
+}
+
+#activity_slider p{
+	color: #000;
+}

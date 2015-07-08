@@ -2,8 +2,8 @@
 defined( 'ABSPATH' ) or die( 'Please return to the main page' );
 
 function HS_as_shortcode( $args ){
-	if( isset( $args['category'] ) && term_exists( $args['category'], 'category' ) ){
-		$category = esc_attr( $args['category'] );
+	if( isset( $args['category'] ) && term_exists( $args['category'] ) ){
+		$category = term_exists( $args['category'] );
 	}
 	else{
 		$category = get_option( 'default_category' );
