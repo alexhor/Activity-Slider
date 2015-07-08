@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Activity Slider
  * Description: A Simple Bootstrap Slider to Display Posts
- * Version: 1.0.3
+ * Version: 1.0.4
  * Author: Hornig Software
  * Author URI: http://hornig-software.com
  * License: The MIT License (MIT)

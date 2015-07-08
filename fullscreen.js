@@ -7,7 +7,37 @@ jQuery( document ).ready( function(){
 		mouse_idle_time = 0;
 		show_fullscreen_elements();
 	});
+	
+	jQuery( this ).on( 'fullscreenchange', HS_as_after_fullscreenchange );
+	jQuery( this ).on( 'mozfullscreenchange', HS_as_after_fullscreenchange );
+	jQuery( this ).on( 'webkitfullscreenchange', HS_as_after_fullscreenchange );
 });
+
+function HS_as_strech_imgs(){
+	jQuery( '#activity_slider .HS_as_fullscreen_img' ).each( function(){
+		if( ( jQuery( '#activity_slider' ).height() - jQuery( this ).height() ) < ( jQuery( '#activity_slider' ).width() - jQuery( this ).width() ) ){
+			jQuery( this ).removeClass( 'fillwidth' ).addClass( 'fillheight' );
+		}
+		else{
+			jQuery( this ).removeClass( 'fillheight' ).addClass( 'fillwidth' );
+		}
+	});
+}
+
+jQuery( window ).resize( function(){ HS_as_strech_imgs(); } );
+
+function HS_as_after_fullscreenchange(){
+	var fullscreenEnabled = document.mozFullScreen || document.webkitIsFullScreen || false;
+	
+	if( fullscreenEnabled ){
+		idle_interval = setInterval( check_mouse_idle, 500 );
+		jQuery( '#activity_slider' ).addClass( 'HS_as_fullscreen' );
+	}
+	else{
+		clearInterval( idle_interval );
+		jQuery( '#activity_slider' ).removeClass( 'HS_as_fullscreen' );
+	}
+}
 
 function HS_as_fullscreen( e ){
 	var jQuery_elem = jQuery( e.target ).parent();
@@ -27,8 +57,6 @@ function HS_as_fullscreen( e ){
 		else if ( elem.webkitRequestFullscreen ) {
 			elem.webkitRequestFullscreen();
 		}
-		
-		idle_interval = setInterval( check_mouse_idle, 500 );
 	}
 	else{
 		if ( document.exitFullscreen ) {
@@ -40,8 +68,6 @@ function HS_as_fullscreen( e ){
 		} else if ( document.webkitExitFullscreen ) {
 			document.webkitExitFullscreen();
 		}
-		
-		clearInterval( idle_interval );
 	}
 }
 
@@ -59,9 +85,6 @@ function check_mouse_idle(){
 		else{
 			mouse_idle_time = mouse_idle_time + 500;
 		}
-	}
-	else{
-		clearInterval( idle_interval );
 	}
 }
 
